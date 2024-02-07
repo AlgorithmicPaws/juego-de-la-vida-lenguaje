@@ -24,14 +24,20 @@ def print_state(state):
         print()
     print()
 
-width, height = 5, 5
-generations = 10
+width, height = 10, 10
+generations = 20
 
-initial_state = np.array([[0, 0, 1, 0, 0],
-                          [0, 1, 0, 1, 0],
-                          [1, 0, 1, 0, 1],
-                          [0, 0, 1, 0, 0],
-                          [0, 0, 0, 0, 0]])
+def read_initial_state(filename):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+        state = []
+        for line in lines:
+            state.append([int(x) for x in line.strip()])
+        return np.array(state)
+
+filename = 'universidad/5_semestre/leng_programacion/juego-de-la-vida-lenguaje/letras-frases/letra_delta.txt'
+
+initial_state = read_initial_state(filename)
 
 
 for generation in range(1, generations + 1):
