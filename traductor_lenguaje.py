@@ -21,16 +21,20 @@ def next_state(curr_state, num_generations):
                     new_state[y, x] = 1
                 else:
                     new_state[y, x] = curr_state[y, x]
-        print('Generation: ' + str(ng))
-        print_state(curr_state)
+    
         curr_state = new_state
+        print('Generation: ' + str(ng+1))
+        print_state(curr_state)
     return curr_state
 
 def print_state(state):
     width, height = state.shape
     for y in range(width):
         for x in range(height):
-            print(state[y, x], end=' ')
+            if state[y, x] == 1:
+                print('■', end=' ')
+            else:
+                print('░', end=' ')
         print()
     print()
 
@@ -48,42 +52,35 @@ def main():
     script_directory = os.path.dirname(os.path.abspath(__file__))
     
     characters = [
-        Character('p', 'letra_pez.txt', 3),
-        Character('o', 'letra_o.txt', 18),
-<<<<<<< HEAD
-        Character('de', 'letra_delta.txt', 3),
-=======
-        Character('e', 'letra_delta.txt', 3),
->>>>>>> dev
-        Character('d', 'letra_d.txt', 3),
-        Character('b', 'letra_b.txt', 3),
-        Character('a', 'letra_a.txt', 3),
-        Character('i', 'letra_i.txt', 10),
-        Character('e', 'letra_e.txt', 10),
-        Character('n', 'letra_n.txt', 3),
-        Character('c', 'letra_c.txt', 14),
-        Character('t', 'letra_t.txt', 6),
-        Character('s', 'easter_egg.txt', 11),
+        Character('p', 'letra_pez.txt', 2),
+        Character('o', 'letra_o.txt', 17),
+        Character('de', 'letra_delta.txt', 2),
+        Character('d', 'letra_d.txt', 2),
+        Character('b', 'letra_b.txt', 2),
+        Character('a', 'letra_a.txt', 1),
+        Character('i', 'letra_i.txt', 9),
+        Character('e', 'letra_e.txt', 9),
+        Character('n', 'letra_n.txt', 2),
+        Character('c', 'letra_c.txt', 13),
+        Character('t', 'letra_t.txt', 5),
+        Character('s', 'easter_egg.txt', 10),
     ]
     
     while True:
         print("Ingrese una letra para visualizar en el juego de la vida:")
-        print("[p] - Pez")
-        print("[de] - Letra Delta")
         print("[o] - Letra O")
-        print("[d] - Letra D")
-        print("[b] - Letra B")
         print("[a] - Letra A")
         print("[i] - Letra I")
         print("[e] - Letra E")
         print("[n] - Letra N")
         print("[t] - Letra T")
+        print("[s] - Letra S")
         print("[c] - Letra C")
-        print("[s] - Salir")
+        print("[q] - Quit")
         
         choice = input().lower()
 
-        if choice == 's':
+        if choice == 'q':
             for char in characters:
                 if char.id == choice:
                     read_initial_states(char, script_directory)
@@ -91,27 +88,22 @@ def main():
                     next_state(char.matrix, char.generations)
                     break
             break
-<<<<<<< HEAD
-        elif choice in ['p', 'o', 'e', 'de', 'b', 'a', 'd', 'i', 'n', 't', 'c']:
-            for char in characters:
-                if char.id == choice:
-                    read_initial_states(char, script_directory)
-                    print_state(char.matrix)
-                    next_state(char.matrix, char.generations)
-                    break
-=======
->>>>>>> dev
         else:
+            word = []
             for letter in choice:
-                if letter in ['p', 'o', 'e', 'd', 'b']:
+                if letter in  ['o', 'e', 'a', 'i', 'n', 't', 'c', 's']:
                     for char in characters:
                         if char.id == letter:
                             read_initial_states(char, script_directory)
                             print_state(char.matrix)
                             char.matrix = next_state(char.matrix, char.generations)
+                            word.append(char.matrix)
                 else:
                     print(f"Caracter {letter} no encontrado. Por favor, seleccione una letra válida.")
                     break
-
+            if len(word) > 0:
+                print('Palabra final: ')
+                word = np.hstack(word)
+                print_state(word)
 if __name__ == "__main__":
     main()
