@@ -8,19 +8,23 @@ class Character:
         self.generations = generations
         self.matrix = []
 
-def next_state(curr_state):
-    height, width = curr_state.shape
-    new_state = np.zeros((height, width), dtype=int)
-    for y in range(height):
-        for x in range(width):
-            neighbors_sum = np.sum(curr_state[max(0, y-1):min(height, y+2), max(0, x-1):min(width, x+2)]) - curr_state[y, x]
-            if curr_state[y, x] == 1 and not (2 <= neighbors_sum <= 3):
-                new_state[y, x] = 0
-            elif neighbors_sum == 3:
-                new_state[y, x] = 1
-            else:
-                new_state[y, x] = curr_state[y, x]
-    return new_state
+def next_state(curr_state, num_generations):
+    for ng in range(num_generations):
+        height, width = curr_state.shape
+        new_state = np.zeros((height, width), dtype=int)
+        for y in range(height):
+            for x in range(width):
+                neighbors_sum = np.sum(curr_state[max(0, y-1):min(height, y+2), max(0, x-1):min(width, x+2)]) - curr_state[y, x]
+                if curr_state[y, x] == 1 and not (2 <= neighbors_sum <= 3):
+                    new_state[y, x] = 0
+                elif neighbors_sum == 3:
+                    new_state[y, x] = 1
+                else:
+                    new_state[y, x] = curr_state[y, x]
+        print('Generation: ' + str(ng))
+        print_state(curr_state)
+        curr_state = new_state
+    return curr_state
 
 def print_state(state):
     width, height = state.shape
@@ -69,6 +73,7 @@ def main():
                 if char.id == choice:
                     read_initial_states(char, script_directory)
                     print_state(char.matrix)
+                    next_state(char.matrix, char.generations)
                     break
         else:
             print("Opción inválida. Por favor, seleccione una letra válida.")
