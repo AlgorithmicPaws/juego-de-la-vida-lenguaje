@@ -63,7 +63,8 @@ def main():
         Character('n', 'letra_n.txt', 2),
         Character('c', 'letra_c.txt', 13),
         Character('t', 'letra_t.txt', 5),
-        Character('s', 'easter_egg.txt', 10),
+        Character('s', 'letra_s.txt', 2),
+        Character('q', 'easter_egg.txt', 10),
     ]
     
     while True:
