@@ -50,7 +50,11 @@ def main():
     characters = [
         Character('p', 'letra_pez.txt', 3),
         Character('o', 'letra_o.txt', 18),
+<<<<<<< HEAD
         Character('de', 'letra_delta.txt', 3),
+=======
+        Character('e', 'letra_delta.txt', 3),
+>>>>>>> dev
         Character('d', 'letra_d.txt', 3),
         Character('b', 'letra_b.txt', 3),
         Character('a', 'letra_a.txt', 3),
@@ -87,6 +91,7 @@ def main():
                     next_state(char.matrix, char.generations)
                     break
             break
+<<<<<<< HEAD
         elif choice in ['p', 'o', 'e', 'de', 'b', 'a', 'd', 'i', 'n', 't', 'c']:
             for char in characters:
                 if char.id == choice:
@@ -94,8 +99,19 @@ def main():
                     print_state(char.matrix)
                     next_state(char.matrix, char.generations)
                     break
+=======
+>>>>>>> dev
         else:
-            print("Opción inválida. Por favor, seleccione una letra válida.")
+            for letter in choice:
+                if letter in ['p', 'o', 'e', 'd', 'b']:
+                    for char in characters:
+                        if char.id == letter:
+                            read_initial_states(char, script_directory)
+                            print_state(char.matrix)
+                            char.matrix = next_state(char.matrix, char.generations)
+                else:
+                    print(f"Caracter {letter} no encontrado. Por favor, seleccione una letra válida.")
+                    break
 
 if __name__ == "__main__":
     main()
