@@ -23,8 +23,9 @@ def next_state(curr_state):
     return new_state
 
 def print_state(state):
-    for y in range(13):
-        for x in range(13):
+    width, height = state.shape
+    for y in range(width):
+        for x in range(height):
             print(state[y, x], end=' ')
         print()
     print()
