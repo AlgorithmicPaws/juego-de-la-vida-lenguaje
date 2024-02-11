@@ -49,26 +49,45 @@ def main():
     
     characters = [
         Character('p', 'letra_pez.txt', 3),
-        Character('o', 'letra_o.txt', 3),
-        Character('e', 'letra_delta.txt', 3),
+        Character('o', 'letra_o.txt', 18),
+        Character('de', 'letra_delta.txt', 3),
         Character('d', 'letra_d.txt', 3),
-        Character('b', 'letra_b.txt', 3)
+        Character('b', 'letra_b.txt', 3),
+        Character('a', 'letra_a.txt', 3),
+        Character('i', 'letra_i.txt', 10),
+        Character('e', 'letra_e.txt', 10),
+        Character('n', 'letra_n.txt', 3),
+        Character('c', 'letra_c.txt', 14),
+        Character('t', 'letra_t.txt', 6),
+        Character('s', 'easter_egg.txt', 11),
     ]
     
     while True:
         print("Ingrese una letra para visualizar en el juego de la vida:")
         print("[p] - Pez")
+        print("[de] - Letra Delta")
         print("[o] - Letra O")
-        print("[e] - Letra Delta")
         print("[d] - Letra D")
         print("[b] - Letra B")
-        print("[q] - Salir")
-
+        print("[a] - Letra A")
+        print("[i] - Letra I")
+        print("[e] - Letra E")
+        print("[n] - Letra N")
+        print("[t] - Letra T")
+        print("[c] - Letra C")
+        print("[s] - Salir")
+        
         choice = input().lower()
 
-        if choice == 'q':
+        if choice == 's':
+            for char in characters:
+                if char.id == choice:
+                    read_initial_states(char, script_directory)
+                    print_state(char.matrix)
+                    next_state(char.matrix, char.generations)
+                    break
             break
-        elif choice in ['p', 'o', 'e', 'd', 'b']:
+        elif choice in ['p', 'o', 'e', 'de', 'b', 'a', 'd', 'i', 'n', 't', 'c']:
             for char in characters:
                 if char.id == choice:
                     read_initial_states(char, script_directory)
