@@ -30,7 +30,7 @@ def print_state(state):
         print()
     print()
 
-def read_initial_states(character):
+def read_initial_states(character, script_directory):
     filepath = os.path.join(script_directory, character.filename)
     print(filepath)
     with open(filepath, 'r') as file:
@@ -40,16 +40,38 @@ def read_initial_states(character):
             state.append([int(x) for x in line.strip()])
         character.matrix = np.array(state)
 
-script_directory = os.path.dirname(os.path.abspath(__file__))
+def main():
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    
+    characters = [
+        Character('p', 'letra_pez.txt', 3),
+        Character('o', 'letra_o.txt', 3),
+        Character('e', 'letra_delta.txt', 3),
+        Character('d', 'letra_d.txt', 3),
+        Character('b', 'letra_b.txt', 3)
+    ]
+    
+    while True:
+        print("Ingrese una letra para visualizar en el juego de la vida:")
+        print("[p] - Pez")
+        print("[o] - Letra O")
+        print("[e] - Letra Delta")
+        print("[d] - Letra D")
+        print("[b] - Letra B")
+        print("[q] - Salir")
 
-characters = [
-    Character('p', 'letra_pez.txt', 3),
-    Character('o', 'letra_o.txt', 3),
-    Character('e', 'letra_delta.txt', 3),
-    Character('d', 'letra_d.txt', 3),
-    Character('b', 'letra_b.txt', 3)
-]
-for char in characters:
-    read_initial_states(char)
-    print_state(char.matrix)
+        choice = input().lower()
 
+        if choice == 'q':
+            break
+        elif choice in ['p', 'o', 'e', 'd', 'b']:
+            for char in characters:
+                if char.id == choice:
+                    read_initial_states(char, script_directory)
+                    print_state(char.matrix)
+                    break
+        else:
+            print("Opción inválida. Por favor, seleccione una letra válida.")
+
+if __name__ == "__main__":
+    main()
