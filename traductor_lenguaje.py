@@ -52,18 +52,14 @@ def main():
     script_directory = os.path.dirname(os.path.abspath(__file__))
     
     characters = [
-        Character('p', 'letra_pez.txt', 2),
         Character('o', 'letra_o.txt', 17),
-        Character('de', 'letra_delta.txt', 2),
-        Character('d', 'letra_d.txt', 2),
-        Character('b', 'letra_b.txt', 2),
         Character('a', 'letra_a.txt', 1),
         Character('i', 'letra_i.txt', 9),
         Character('e', 'letra_e.txt', 9),
         Character('n', 'letra_n.txt', 2),
-        Character('c', 'letra_c.txt', 13),
         Character('t', 'letra_t.txt', 5),
         Character('s', 'letra_s.txt', 2),
+        Character('c', 'letra_c.txt', 13),
         Character('q', 'easter_egg.txt', 10),
     ]
     
