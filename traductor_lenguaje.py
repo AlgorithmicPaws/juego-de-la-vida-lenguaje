@@ -55,7 +55,7 @@ def main():
         Character('o', 'letra_o.txt', 17),
         Character('a', 'letra_a.txt', 1),
         Character('i', 'letra_i.txt', 9),
-        Character('e', 'letra_e.txt', 9),
+        Character('e', 'letra_e.txt', 5),
         Character('n', 'letra_n.txt', 2),
         Character('t', 'letra_t.txt', 5),
         Character('s', 'letra_s.txt', 2),
